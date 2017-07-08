@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/DMTest2.iml" filepath="$PROJECT_DIR$/DMTest2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dmlib/dmlib.iml" filepath="$PROJECT_DIR$/dmlib/dmlib.iml" />
+    </modules>
+  </component>
+</project>
