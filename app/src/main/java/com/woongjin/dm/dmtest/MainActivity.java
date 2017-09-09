@@ -132,6 +132,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 mMsgBox.setText("등록 버튼을 누른 후 검사 버튼을 눌러 주세요");
                 return;
             }
+            mRegDMInfo.setLatitude(0.0);
+            mRegDMInfo.setLongitude(0.0);
 
             DMInfo dmInfo = mService.verifyDM(mRegDMInfo);
 
