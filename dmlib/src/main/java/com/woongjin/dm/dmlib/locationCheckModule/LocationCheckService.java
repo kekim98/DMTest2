@@ -52,10 +52,12 @@ public class LocationCheckService extends Service {
     public LocationInfo parseLocation(DMInfo data){
         LocationInfo result = new LocationInfo();
         String cellId="", addr1="", addr2="", addr3="", addr4 ="";
+        String lat="", lng="";
+
 
         String enc = data.getDmData();
         String dec = getBase64decode(enc);
-        Pattern pattern = Pattern.compile("([^-]*)-([^-]*)-([^-]*)-([^-]*)-([^-]*)");
+        Pattern pattern = Pattern.compile("([^-]*)-([^-]*)-([^-]*)-([^-]*)-([^-]*)-([^-]*)-([^-]*)");
         Matcher matcher = pattern.matcher(dec);
 
         while(matcher.find()) {
@@ -64,6 +66,8 @@ public class LocationCheckService extends Service {
             addr2 = matcher.group(3);
             addr3 = matcher.group(4);
             addr4 = matcher.group(5);
+            lat = matcher.group(6);
+            lng = matcher.group(7);
         }
 
         result.setCID(cellId);
@@ -71,8 +75,8 @@ public class LocationCheckService extends Service {
         result.setADDR2(addr2);
         result.setADDR3(addr3);
         result.setADDR4(addr4);
-        result.setLAT(data.getLatitude());
-        result.setLNG(data.getLongitude());
+        result.setLAT(Double.parseDouble(lat));
+        result.setLNG(Double.parseDouble(lng));
 
         return result;
     }
@@ -199,7 +203,9 @@ public class LocationCheckService extends Service {
                 + lo.getADDR1() + DELIMITER
                 + lo.getADDR2() + DELIMITER
                 + lo.getADDR3() + DELIMITER
-                + lo.getADDR4() + DELIMITER;
+                + lo.getADDR4() + DELIMITER
+                + lo.getLAT() + DELIMITER
+                + lo.getLNG() + DELIMITER;
         String encData = getBase64encode(str);
         dmInfo.setDmData(encData);
 
@@ -220,7 +226,7 @@ public class LocationCheckService extends Service {
             return dmInfo;
         }
 
-        if(rcvInfo == null || rcvInfo.getDmData().isEmpty() || rcvInfo.getLatitude() == 0 || rcvInfo.getLongitude() == 0) {
+        if(rcvInfo == null || rcvInfo.getDmData().isEmpty() /*|| rcvInfo.getLatitude() == 0 || rcvInfo.getLongitude() == 0*/) {
             dmInfo.setErrCode(E_UNKNOWN);
             return dmInfo;
         }
