@@ -163,8 +163,9 @@ class _LocationManager {
     }
 
     static boolean isWifiEnable(Context ctx){
-        wm = (WifiManager) ctx.getSystemService(Context.WIFI_SERVICE);
-        return wm.isWifiEnabled();
+        return true;
+//        wm = (WifiManager) ctx.getSystemService(Context.WIFI_SERVICE);
+//        return wm.isWifiEnabled();
     }
 
     static int initLocationManager(Context ctx){
