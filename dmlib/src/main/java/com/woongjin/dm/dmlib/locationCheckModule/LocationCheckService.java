@@ -75,10 +75,21 @@ public class LocationCheckService extends Service {
         result.setADDR2(addr2);
         result.setADDR3(addr3);
         result.setADDR4(addr4);
-        result.setLAT(Double.parseDouble(lat));
-        result.setLNG(Double.parseDouble(lng));
+        result.setLAT(parseDouble(lat));
+        result.setLNG(parseDouble(lng));
 
         return result;
+    }
+
+    private Double parseDouble(String s) {
+        Double ret;
+        try {
+            ret = Double.parseDouble(s);
+        } catch (Exception e) {
+            ret = 0.0;
+        }
+
+        return ret;
     }
 
     private LocationInfo getCurrentLocation(){
